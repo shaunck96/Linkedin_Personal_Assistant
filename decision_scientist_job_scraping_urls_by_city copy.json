@@ -1,0 +1,9 @@
+{ 
+"remote" : "https://www.linkedin.com/jobs/search/?currentJobId=3784837026&f_WT=2&keywords=decision%20scientist&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"New York" : "https://www.linkedin.com/jobs/search/?currentJobId=3776129602&geoId=105080838&keywords=decision%20scientist&location=New%20York%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"California" : "https://www.linkedin.com/jobs/search/?currentJobId=3762680022&geoId=102095887&keywords=decision%20scientist&location=California%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Seattle":"https://www.linkedin.com/jobs/search/?currentJobId=3775986717&geoId=104116203&keywords=decision%20scientist&location=Seattle%2C%20Washington%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Miami":"https://www.linkedin.com/jobs/search/?currentJobId=3756301521&geoId=102394087&keywords=decision%20scientist&location=Miami%2C%20Florida%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Boston":"https://www.linkedin.com/jobs/search/?currentJobId=3774949236&geoId=102380872&keywords=decision%20scientist&location=Boston%2C%20Massachusetts%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Pennsylvania":"https://www.linkedin.com/jobs/search/?currentJobId=3776649243&geoId=102986501&keywords=decision%20scientist&location=Pennsylvania%2C%20United%20States&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true"
+}

@@ -1,0 +1,9 @@
+{ 
+"remote" : "https://www.linkedin.com/jobs/search/?currentJobId=3766982123&f_WT=2&keywords=data%20scientist%20product%20analytics&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"New York" : "https://www.linkedin.com/jobs/search/?currentJobId=3773567016&geoId=105080838&keywords=data%20scientist%20product%20analytics&location=New%20York%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"California" : "https://www.linkedin.com/jobs/search/?currentJobId=3758963689&geoId=102095887&keywords=data%20scientist%20product%20analytics&location=California%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Seattle":"https://www.linkedin.com/jobs/search/?currentJobId=3772697642&geoId=104116203&keywords=data%20scientist%20product%20analytics&location=Seattle%2C%20Washington%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Miami":"https://www.linkedin.com/jobs/search/?currentJobId=3309939548&geoId=90000056&keywords=data%20scientist%20product%20analytics&location=Miami-Fort%20Lauderdale%20Area&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Boston":"https://www.linkedin.com/jobs/search/?currentJobId=3777993198&geoId=102380872&keywords=data%20scientist%20product%20analytics&location=Boston%2C%20Massachusetts%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Pennsylvania":"https://www.linkedin.com/jobs/search/?currentJobId=3764592200&geoId=102986501&keywords=data%20scientist%20product%20analytics&location=Pennsylvania%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true"
+}

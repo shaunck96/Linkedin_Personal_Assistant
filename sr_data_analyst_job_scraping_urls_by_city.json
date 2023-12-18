@@ -1,0 +1,9 @@
+{ 
+"remote" : "https://www.linkedin.com/jobs/search/?currentJobId=3769021063&f_WT=2&keywords=senior%20data%20analyst&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true",
+"New York" : "https://www.linkedin.com/jobs/search/?currentJobId=3767702442&geoId=105080838&keywords=senior%20data%20analyst&location=New%20York%2C%20United%20States&origin=JOB_SEARCH_PAGE_JOB_FILTER&refresh=true",
+"California" : "https://www.linkedin.com/jobs/search/?currentJobId=3778903750&geoId=102095887&keywords=senior%20data%20analyst&location=California%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Seattle":"https://www.linkedin.com/jobs/search/?currentJobId=3685739374&geoId=104116203&keywords=senior%20data%20analyst&location=Seattle%2C%20Washington%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Miami":"https://www.linkedin.com/jobs/search/?currentJobId=3770142941&geoId=102394087&keywords=senior%20data%20analyst&location=Miami%2C%20Florida%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Boston":"https://www.linkedin.com/jobs/search/?currentJobId=3762671272&geoId=102380872&keywords=senior%20data%20analyst&location=Boston%2C%20Massachusetts%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true",
+"Pennsylvania":"https://www.linkedin.com/jobs/search/?currentJobId=3751600919&geoId=102986501&keywords=senior%20data%20analyst&location=Pennsylvania%2C%20United%20States&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true"
+}
