@@ -1,0 +1,165 @@
+import pandas as pd
+import os
+import torch
+import openai
+import regex as re
+import json
+import requests
+from tqdm import tqdm
+from transformers import pipeline
+import tiktoken
+import pandas as pd
+import re
+from urllib import parse
+from langchain.output_parsers import StructuredOutputParser, ResponseSchema
+from langchain.prompts import PromptTemplate, ChatPromptTemplate, HumanMessagePromptTemplate
+from langchain.chat_models import ChatOpenAI
+from itertools import islice
+from pydantic import BaseModel, Field
+from langchain.output_parsers import PydanticOutputParser
+from pydantic import BaseModel, Field
+from langchain.output_parsers import PydanticOutputParser
+from itertools import islice
+import base64
+import requests
+from pathlib import Path
+from langchain.llms import OpenAI
+from langchain.output_parsers import PydanticOutputParser
+from langchain.prompts import PromptTemplate
+from langchain.pydantic_v1 import BaseModel, Field, validator
+from langchain.llms import OpenAI
+import requests
+import requests
+from langchain.chains.summarize import load_summarize_chain
+from langchain.docstore.document import Document
+import nltk
+import ast
+import re
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from pydantic import BaseModel, Field
+from typing import List
+from langchain.output_parsers import PydanticOutputParser
+from langchain.prompts import PromptTemplate
+
+nltk.download('punkt')
+
+def get_completion(prompt: str, model: str = "gpt-3.5-turbo") -> str:
+    """
+    Query your LLM model with your prompt.
+    Parameters:
+    prompt (str): The text prompt you want the LLM to respond to.
+    model (str, optional): The model to be used for generating the response. Default is "gpt-3.5-turbo".
+    Returns:
+    str: The generated text completion from the specified model.
+    """
+    openai.api_key = "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"
+    messages = [{"role": "user", "content": prompt}]
+    response = openai.ChatCompletion.create(
+        model= model,
+        messages=messages,
+        temperature=0.5
+    )
+    return response.choices[0].message["content"]
+
+def prompt_selection(task='skill_extraction', input_to_llm='', resp='', req=''):
+
+  class skillsResponse(BaseModel):
+      technical_skills: list = Field(description="List of Technical skills required in the job description")
+      soft_skills: list = Field(description="List of Soft skills required in the job description")
+
+  class skills(BaseModel):
+      skills: List[skillsResponse]
+
+  class languagesResponse(BaseModel):
+      programming_languages: str = Field(description="Programming Languages required in the job description")
+
+  class languages(BaseModel):
+      languages: List[languagesResponse]
+
+  class keywordsResponse(BaseModel):
+      keywords: str = Field(description="List of Technical Data Science related Keywords in the job post")
+
+  class keywords(BaseModel):
+      keywords: List[keywordsResponse]
+
+  if task == 'skill_extraction':
+    prompt = f"""
+    You are a helpful assistant who evaluates job descriptions and extracts key elements based on the evaluation strategy listed below:
+
+    **Job Description**
+    "{input_to_llm}"
+    """
+    pydantic_object=skills
+
+  elif task == 'language_extraction':
+    prompt = f"""
+    You are a helpful assistant who evaluates technical skill requirements and extracts programming languages and tools required as a python list:
+
+    **Technical Skills**
+    "{resp+req}"
+
+    Return list of programming languages and tools alone.
+    """
+    pydantic_object=languages
+
+  elif task == 'keywords':
+    prompt = f"""
+    Extract data science related keywords from the job description below:
+
+    **Day to day responsibilities**
+    "{resp+req}"
+    """
+    pydantic_object=keywords
+  
+  return[prompt,pydantic_object]
+
+def gpt_response(task='', input_to_llm='', resp='', req=''):
+  prompt_and_pyd_obj = prompt_selection(task, input_to_llm, resp, req)
+  prompt = prompt_and_pyd_obj[0]
+  pydantic_object = prompt_and_pyd_obj[1]
+  pydantic_parser = PydanticOutputParser(pydantic_object=pydantic_object)
+  format_instructions = pydantic_parser.get_format_instructions()
+  print(format_instructions)
+  query = prompt
+  prompt = PromptTemplate(
+      template="Answer the user query.\n{format_instructions}\n{query}\n",
+      input_variables=["query"],
+      partial_variables={"format_instructions": pydantic_parser.get_format_instructions()},
+  )
+  _input = prompt.format_prompt(query=query)
+  answer = get_completion(_input.to_string())
+  return answer
+
+def gpt_trigger():
+  job_data = pd.read_csv(r'job_details.csv')
+
+  job_data['Responsibilities'] = job_data['Responsibilities'].apply(lambda x: x.replace("[","")).apply(lambda x: x.replace("]","")).apply(lambda x: x.replace("'",""))
+  job_data['Requirements'] = job_data['Requirements'].apply(lambda x: x.replace("[","")).apply(lambda x: x.replace("]","")).apply(lambda x: x.replace("'",""))
+  input_to_llm = ""
+
+  for index in job_data.index:
+    input_to_llm+="Job Title: " +str(job_data.at[index, 'Job Title'])+"\n"+ " Job Responsibilities : "+str(job_data.at[index, 'Responsibilities'])+"\n"+"  Job Requirements : "+str(job_data.at[index, 'Requirements'])+"\n\n"
+  
+  resp = job_data.at[0, 'Responsibilities']
+  req = job_data.at[0, 'Requirements']
+
+  skills = gpt_response("skill_extraction", input_to_llm, resp, req)
+  prg_lang = gpt_response("language_extraction", input_to_llm, resp, req)
+  keywords = gpt_response("keywords", input_to_llm, resp, req)
+
+  return [skills, prg_lang, keywords]
+
+result = gpt_trigger()
+technical_skills = ast.literal_eval(result[0].replace("\n  ","").replace("\n",""))['skills']['technical_skills']
+soft_skills = ast.literal_eval(result[0].replace("\n  ","").replace("\n",""))['skills']['soft_skills']
+programming_languages = ast.literal_eval(result[1])['languages']['programming_languages']
+keywords = ', '.join(ast.literal_eval(result[2])['keywords']['keywords'])
+
+result_dict = {}
+result_dict['technical_skills'] = technical_skills
+result_dict['soft_skills'] = soft_skills
+result_dict['programming_languages'] = programming_languages
+result_dict['keywords'] = keywords
+
+with open('result_dict.json', 'w') as fp:
+    json.dump(result_dict, fp)
