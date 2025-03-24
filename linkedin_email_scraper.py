@@ -1,4 +1,4 @@
-import requests
+ok import requests
 import re
 
 class LinkedIn:
@@ -61,7 +61,7 @@ class LinkedIn:
         return emails_found
 
 email = "shaunchackoofficial@gmail.com" #set username
-password = "Chacko1234#" #set password
+password = "" #set password
 target_profile = "https://www.linkedin.com/in/tomaarsen/" #set target profile url
 client = LinkedIn()
 if client.login(email, password):
