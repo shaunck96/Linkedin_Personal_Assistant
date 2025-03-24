@@ -72,4 +72,4 @@ class NewsFeedScraper():
 
         self.driver.quit()
 
-NewsFeedScraper(email="shaunchackoofficial@gmail.com", password="Chacko1234#").scraper_trigger()
+NewsFeedScraper(email="shaunchackoofficial@gmail.com", password="#").scraper_trigger()
